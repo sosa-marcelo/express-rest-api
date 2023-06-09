@@ -8,14 +8,14 @@ const {
 } = require('./middlewares/errorHandler');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
 const whitelist = [
   'http://localhost:8080',
   'https://myapp.com',
-  'http//localhost:3000',
+  'http://localhost:3000/',
 ];
 const options = {
   origin: (origin, callback) => {
@@ -27,7 +27,7 @@ const options = {
   },
 };
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Hola mi server en express');
 });
 
